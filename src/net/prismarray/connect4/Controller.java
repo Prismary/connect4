@@ -15,16 +15,24 @@ public class Controller {
 		int line = 0;
 		
 		while (true) {
-			System.out.println("Player "+id+", please choose a column:\n>> ");
+			System.out.println("\nPlayer "+id+", please choose a column:\n>> ");
 			column = scanner.nextInt();
 			scanner.close();
 			
-			while (board.checkValue(column, line, id) == false) {
+			while (Board.checkEmpty(column, line) == true) {
 				line++;
 			}
 			
-			board.setValue(column, line, id);
-			
+			if (line <= 5) {
+				line--;
+				Board.setValue(column, line, id);
+				break;
+			} else {
+				line = 0;
+				System.out.println("[!] This Column is already full!");
+			}
 		}
+		
+		Board.checkVictory(id);
 	}
 }
