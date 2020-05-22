@@ -65,13 +65,16 @@ public class Board {
 	}
 	
 	public void drawBoard() {
-		String draw_out = "\n";
+		String draw_out = "";
 		for (int i = 0; i < 6; i++) {
+			draw_out = draw_out + "\n+-+-+-+-+-+-+-+\n|";
 			for (int ii = 0; ii < 7; ii++) {
-				draw_out = draw_out + board_arr[ii][i];
+				draw_out = draw_out + board_arr[ii][i] + "|";
 			}
-			draw_out = draw_out + "\n";
 		}
+		draw_out = draw_out + "\n+-+-+-+-+-+-+-+"
+							+ "\n ^ ^ ^ ^ ^ ^ ^"
+							+ "\n 1 2 3 4 5 6 7\n";
 		
 		System.out.println(draw_out);
 	}

@@ -7,7 +7,13 @@ public class Main {
 		Controller player1 = new Controller(board, 1);
 		Controller player2 = new Controller(board, 2);
 		
-		System.out.println("Welcome to Connect4!");
+		System.out.println(
+				"   ____                            _   _  _   \r\n" + 
+				"  / ___|___  _ __  _ __   ___  ___| |_| || |  \r\n" + 
+				" | |   / _ \\| '_ \\| '_ \\ / _ \\/ __| __| || |_ \r\n" + 
+				" | |__| (_) | | | | | | |  __/ (__| |_|__   _|\r\n" + 
+				"  \\____\\___/|_| |_|_| |_|\\___|\\___|\\__|  |_|  \r\n" +
+				"   The Classic Vertical Four-In-A-Row Game\n");
 		board.drawBoard();
 		
 		while (true) {
