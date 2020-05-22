@@ -32,22 +32,22 @@ public class Cursor {
 		for (int i = 0; i < steps+1; i++) {
 			if (direction == "up") {
 				ln--;
-			} else if (direction == "down") {
+			} else if (direction.equals("down")) {
 				ln++;
-			} else if (direction == "left") {
+			} else if (direction.equals("left")) {
 				cl--;
-			} else if (direction == "right") {
+			} else if (direction.equals("right")) {
 				cl++;
-			} else if (direction == "upleft") {
+			} else if (direction.equals("upleft")) {
 				ln--;
 				cl--;
-			} else if (direction == "upright") {
+			} else if (direction.equals("upright")) {
 				ln--;
 				cl++;
-			} else if (direction == "downleft") {
+			} else if (direction.equals("downleft")) {
 				ln++;
 				cl--;
-			} else if (direction == "downright") {
+			} else if (direction.equals("downright")) {
 				ln++;
 				cl++;
 			}

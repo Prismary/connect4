@@ -9,7 +9,7 @@ public class Controller {
 		this.id = id;
 	}
 	
-	public void playTurn() {
+	public boolean playTurn() {
 		Scanner scanner = new Scanner(System.in);
 		int column;
 		int line = 0;
@@ -29,10 +29,19 @@ public class Controller {
 				break;
 			} else {
 				line = 0;
-				System.out.println("[!] This Column is already full!");
+				System.out.println("[!] This column is already full!");
 			}
 		}
 		
-		Board.checkVictory(id);
+		if (Board.checkVictory(column, line, id) == true) {
+			System.out.println("\nPlayer "+id+" won the game!");
+			return true;
+		}
+		if (Board.checkDraw() == true) {
+			System.out.println("\nThe game ended in a draw!");
+			return true;
+		}
+		return false;
+		
 	}
 }

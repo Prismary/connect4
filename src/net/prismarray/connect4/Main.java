@@ -9,5 +9,21 @@ public class Main {
 		
 		System.out.println("Welcome to Connect4!");
 		
+		while (true) {
+			// Player 1 Turn
+			if (player1.playTurn() == false) {
+				Board.drawBoard();
+			} else {
+				System.exit(0);
+			}
+			
+			// Player 2 Turn
+			if (player2.playTurn() == false) {
+				Board.drawBoard();
+			} else {
+				System.exit(0);
+			}
+		}
+		
 	}
 }
