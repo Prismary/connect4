@@ -2,24 +2,24 @@ package net.prismarray.connect4;
 
 public class Board {
 	
-	static int[][] board = new int[7][6];
+	private int[][] board_arr = new int[7][6];
 	
-	public static void setValue(int column, int line, int value) {
-		board[column][line] = value;
+	public void setValue(int column, int line, int value) {
+		board_arr[column][line] = value;
 	}
 	
-	public static int getValue(int column, int line) {
+	public int getValue(int column, int line) {
 		try {
-			return board[column][line];
+			return board_arr[column][line];
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return 0;
 		}
 		
 	}
 	
-	public static boolean checkEmpty(int column, int line) {
+	public boolean checkEmpty(int column, int line) {
 		try {
-			if (board[column][line] == 0) {
+			if (board_arr[column][line] == 0) {
 				return true;
 			} else {
 				return false;
@@ -29,10 +29,10 @@ public class Board {
 		}
 	}
 	
-	public static boolean checkDraw() {
+	public boolean checkDraw() {
 		for (int i = 0; i < 7; i++) {
 			for (int ii = 0; ii < 6; ii++) {
-				if (board[i][ii] == 0) {
+				if (board_arr[i][ii] == 0) {
 					return false;
 				}
 			}
@@ -40,8 +40,8 @@ public class Board {
 		return true;
 	}
 	
-	public static boolean checkVictory(int ref_column, int ref_line, int player) {
-		Cursor vcursor = new Cursor(ref_column, ref_line);
+	public boolean checkVictory(int ref_column, int ref_line, int player) {
+		Cursor vcursor = new Cursor(this, ref_column, ref_line);
 		String[][] instructions = {{"left", "right"}, {"up", "down"}, {"upleft", "downright"}, {"upright", "downleft"}};
 		int streak = 0;
 		
@@ -64,11 +64,11 @@ public class Board {
 		return false;
 	}
 	
-	public static void drawBoard() {
+	public void drawBoard() {
 		String draw_out = "\n";
 		for (int i = 0; i < 6; i++) {
 			for (int ii = 0; ii < 7; ii++) {
-				draw_out = draw_out + board[ii][i];
+				draw_out = draw_out + board_arr[ii][i];
 			}
 			draw_out = draw_out + "\n";
 		}

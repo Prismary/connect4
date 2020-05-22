@@ -3,13 +3,15 @@ package net.prismarray.connect4;
 public class Cursor {
 	int home_cl;
 	int home_ln;
+	Board board;
 	
 	int cl = 0; // Column
 	int ln = 0; // Line
 		
-	public Cursor(int hx, int hy) {
+	public Cursor(Board board, int hx, int hy) {
 		this.home_cl = hx;
 		this.home_ln = hy;
+		this.board = board;
 		goHome();
 	}
 	
@@ -24,7 +26,7 @@ public class Cursor {
 	}
 	
 	public int checkPos() {
-		return Board.getValue(cl, ln);
+		return board.getValue(cl, ln);
 	}
 	
 	public void move(String direction, int steps) {

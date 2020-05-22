@@ -5,9 +5,11 @@ import java.util.Scanner;
 public class Controller {
 	Scanner scanner = new Scanner(System.in);
 	int id;
+	Board board;
 	
-	public Controller(int id) {
+	public Controller(Board board, int id) {
 		this.id = id;
+		this.board = board;
 	}
 	
 	public boolean playTurn() {
@@ -27,12 +29,12 @@ public class Controller {
 				continue;
 			}
 			
-			while (Board.checkEmpty(column, line) == true && line < 6) {
+			while (board.checkEmpty(column, line) == true && line < 6) {
 				line++;
 			}
 			line--;
-			if (Board.checkEmpty(column, line) == true) {
-				Board.setValue(column, line, id);
+			if (board.checkEmpty(column, line) == true) {
+				board.setValue(column, line, id);
 				break;
 			} else {
 				line = 0;
@@ -40,13 +42,13 @@ public class Controller {
 			}
 		}
 		
-		if (Board.checkVictory(column, line, id) == true) {
-			Board.drawBoard();
+		if (board.checkVictory(column, line, id) == true) {
+			board.drawBoard();
 			System.out.println("Player "+id+" won the game!");
 			return true;
 		}
-		if (Board.checkDraw() == true) {
-			Board.drawBoard();
+		if (board.checkDraw() == true) {
+			board.drawBoard();
 			System.out.println("The game ended in a draw!");
 			return true;
 		}
