@@ -2,27 +2,36 @@ package net.prismarray.connect4;
 
 public class Board {
 	
-	static int[][] board = new int[6][5];
+	static int[][] board = new int[7][6];
 	
 	public static void setValue(int column, int line, int value) {
 		board[column][line] = value;
 	}
 	
 	public static int getValue(int column, int line) {
-		return board[column][line];
+		try {
+			return board[column][line];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
+		
 	}
 	
 	public static boolean checkEmpty(int column, int line) {
-		if (board[column][line] == 0) {
-			return true;
-		} else {
+		try {
+			if (board[column][line] == 0) {
+				return true;
+			} else {
+				return false;
+			}
+		} catch (Exception e) {
 			return false;
 		}
 	}
 	
 	public static boolean checkDraw() {
 		for (int i = 0; i < 7; i++) {
-			for (int ii = 0; ii < 6; i++) {
+			for (int ii = 0; ii < 6; ii++) {
 				if (board[i][ii] == 0) {
 					return false;
 				}
@@ -56,9 +65,9 @@ public class Board {
 	}
 	
 	public static void drawBoard() {
-		String draw_out = "";
+		String draw_out = "\n";
 		for (int i = 0; i < 6; i++) {
-			for (int ii = 0; ii < 7; i++) {
+			for (int ii = 0; ii < 7; ii++) {
 				draw_out = draw_out + board[ii][i];
 			}
 			draw_out = draw_out + "\n";

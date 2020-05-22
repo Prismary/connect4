@@ -8,6 +8,7 @@ public class Main {
 		Controller player2 = new Controller(2);
 		
 		System.out.println("Welcome to Connect4!");
+		Board.drawBoard();
 		
 		while (true) {
 			// Player 1 Turn

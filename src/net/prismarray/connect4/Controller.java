@@ -3,6 +3,7 @@ package net.prismarray.connect4;
 import java.util.Scanner;
 
 public class Controller {
+	Scanner scanner = new Scanner(System.in);
 	int id;
 	
 	public Controller(int id) {
@@ -10,21 +11,27 @@ public class Controller {
 	}
 	
 	public boolean playTurn() {
-		Scanner scanner = new Scanner(System.in);
 		int column;
 		int line = 0;
 		
 		while (true) {
-			System.out.println("\nPlayer "+id+", please choose a column:\n>> ");
-			column = scanner.nextInt();
-			scanner.close();
-			
-			while (Board.checkEmpty(column, line) == true) {
-				line++;
+			System.out.print("Player "+id+", please choose a column:\n>> ");
+			try {
+				column = scanner.nextInt()-1;
+			} catch (Exception e) {
+				System.out.println("[!] Invalid input.");
+				continue;
+			}
+			if (column > 6 || column < 0) {
+				System.out.println("[!] Invalid input.");
+				continue;
 			}
 			
-			if (line <= 5) {
-				line--;
+			while (Board.checkEmpty(column, line) == true && line < 6) {
+				line++;
+			}
+			line--;
+			if (Board.checkEmpty(column, line) == true) {
 				Board.setValue(column, line, id);
 				break;
 			} else {
@@ -34,11 +41,13 @@ public class Controller {
 		}
 		
 		if (Board.checkVictory(column, line, id) == true) {
-			System.out.println("\nPlayer "+id+" won the game!");
+			Board.drawBoard();
+			System.out.println("Player "+id+" won the game!");
 			return true;
 		}
 		if (Board.checkDraw() == true) {
-			System.out.println("\nThe game ended in a draw!");
+			Board.drawBoard();
+			System.out.println("The game ended in a draw!");
 			return true;
 		}
 		return false;

@@ -29,7 +29,7 @@ public class Cursor {
 	
 	public void move(String direction, int steps) {
 		
-		for (int i = 0; i < steps+1; i++) {
+		for (int i = 0; i < steps; i++) {
 			if (direction == "up") {
 				ln--;
 			} else if (direction.equals("down")) {
